@@ -88,6 +88,8 @@ Route::middleware('auth')->group(function () {
 		Route::get('/edit/{id}', 'edit')->name('penjual.edit');
 		Route::post('/update/{id}', 'update')->name('penjual.update');
 		Route::get('/hapus/{id}', 'hapus')->name('penjual.hapus');
+		Route::get('/aktif/{id}', 'aktif')->name('penjual.aktif');
+		Route::get('/nonaktif/{id}', 'nonaktif')->name('penjual.nonaktif');
 	});
 
 	Route::controller(SuperAdminController::class)->prefix('superadmin')->group(function() {

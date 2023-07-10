@@ -11,7 +11,6 @@ class PenjualController extends Controller
     public function index()
     {
         $penjual = User::where('level', 'Penjual')->get();
-
         return view('penjual.index', ['penjual' => $penjual]);
     }
 
@@ -64,6 +63,24 @@ class PenjualController extends Controller
     public function hapus($id)
 	{
 		User::find($id)->delete();
+
+		return redirect()->route('penjual');
+	}
+
+    public function nonaktif($id)
+	{
+        User::find($id)->update([
+            'status'=>'0'
+        ]);
+
+		return redirect()->route('penjual');
+	}
+
+    public function aktif($id)
+	{
+		User::find($id)->update([
+            'status'=>'1'
+        ]);
 
 		return redirect()->route('penjual');
 	}

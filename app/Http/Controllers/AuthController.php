@@ -26,10 +26,11 @@ class AuthController extends Controller
 		])->validate();
 
 		User::create([
-			'nama' => $request->nama,
-			'email' => $request->email,
-			'password' => Hash::make($request->password),
-			'level' => $request->role
+			'nama' 		=> $request->nama,
+			'email' 	=> $request->email,
+			'password' 	=> Hash::make($request->password),
+			'level' 	=> $request->role,
+			'status'	=> ($request->role == 'Penjual') ? '0' : '1'
 		]);
 
 		return redirect()->route('login');
@@ -56,6 +57,11 @@ class AuthController extends Controller
 		$request->session()->regenerate();
 
 		if(Auth::user()->level == "Penjual" || Auth::user()->level == "Super Admin") {
+			if(Auth::user()->level == "Penjual" && Auth::user()->status == "0"){
+				throw ValidationException::withMessages([
+					'email' => "Akun Belum diaktivasi oleh Super Admin."
+				]);
+			}
 			return redirect()->route('dashboard');
 		} else {
 			return redirect()->route('customer');

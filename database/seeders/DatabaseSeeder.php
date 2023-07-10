@@ -20,24 +20,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::create([
-            'nama' => 'Super Admin',
-            'email' => 'superadmin@mail.com',
-            'password' => Hash::make('12345'),
-            'level' => 'Super Admin'
+            'nama'      => 'Super Admin',
+            'email'     => 'superadmin@mail.com',
+            'password'  => Hash::make('12345'),
+            'level'     => 'Super Admin',
+            'status'    => '1'
         ]);
 
         User::create([
             'nama' => 'Customer',
             'email' => 'test@mail.com',
             'password' => Hash::make('12345'),
-            'level' => 'Pembeli'
+            'level' => 'Pembeli',
+            'status'    => '1'
         ]);
 
         User::create([
             'nama' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => Hash::make('12345'),
-            'level' => 'Penjual'
+            'level' => 'Penjual',
+            'status'    => '1'
         ]);
 
         Kategori::create([

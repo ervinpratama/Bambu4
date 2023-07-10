@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->string('email');
 			$table->string('password');
 			$table->string('level');
+			$table->enum('status', [0, 1]);
 			$table->timestamps();
 		});
 	}
